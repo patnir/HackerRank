@@ -22,10 +22,10 @@ int getHeight(Node* root){
     if (root->left == NULL && root->right == NULL) {
         return 0;
     }
-    int left = 0;
-    int right = 0;
-    left += getHeight(root->left);
-    right += getHeight(root->right);
+    
+    int left = getHeight(root->left);
+    int right = getHeight(root->right);
+
     if (left > right) {
         return left + 1;
     }
