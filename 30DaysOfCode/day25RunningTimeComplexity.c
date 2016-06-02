@@ -4,7 +4,19 @@
 #include <stdlib.h>
 
 void checkPrime(int number) {
-    printf("%d\n", number);
+    if (number == 1) {
+        printf("Not prime\n");
+        return;
+    }
+    int check = (int)sqrt(number);
+    int i;
+    for (i = 2; i <= check; i++) {
+        if (number % i == 0) {
+            printf("Not prime\n");
+            return;
+        }
+    }
+    printf("Prime\n");
 }
 
 int main() {
