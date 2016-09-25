@@ -30,6 +30,7 @@ def helper(wordList, start):
         tracker[val] += 1
     curr = i
     k = 0
+    print tracker
     while k < 26:
         if tracker[k] != 0:
             wordList[curr] = chr(ord('a') + k)
@@ -47,19 +48,27 @@ def findNextBiggest(word):
     start = len(wordList) - 1
     end = len(wordList) - 1
     for j in range(len(word) - 2, -1, -1):
-        print start, end
-        if ord(wordList[end]) > ord(wordList[j]):
+        print start, j
+        if ord(wordList[j + 1]) > ord(wordList[j]):
             start = j
-            wordList[start], wordList[end] = wordList[end], wordList[start]
-            return helper(wordList, start)
-        if ord(wordList[end]) < ord(wordList[j]) and ord(wordList[end]) < ord(wordList[0]):
-            start = j
-            end = j
+            break
+    print start
+    for j in range(len(word) - 1, -1, -1):
+        if ord(wordList[j]) > ord(wordList[start]):
+            end = j 
+            break
+    print start, end
+    if start > end:
+        return "no answer"
+    wordList[start], wordList[end] = wordList[end], wordList[start] 
+    result = helper(wordList, start)
+    if result != word:
+        return result
     return "no answer"
     
     
 def main():
-    word = "dkhc"
+    word = "dba"
     print word
     print findNextBiggest(word)
     
